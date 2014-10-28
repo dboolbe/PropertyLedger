@@ -40,3 +40,9 @@ gem 'spring',        group: :development
 
 # Use Devise for user authenication
 gem 'devise', '~> 3.2.4'
+
+# Use WillPaginate for simple table pagination
+gem 'will_paginate', '~> 3.0.7'
+
+# Use Bootstrap for better UI design
+gem 'bootstrap-sass', '~> 3.2.0.2'

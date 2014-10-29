@@ -185,9 +185,7 @@
     <orderEntry type="library" scope="PROVIDED" name="activerecord (v4.1.6, RVM: ruby-2.0.0-p576) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activesupport (v4.1.6, RVM: ruby-2.0.0-p576) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="arel (v5.0.1.20140414130214, RVM: ruby-2.0.0-p576) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="autoprefixer-rails (v3.1.2.20141016, RVM: ruby-2.0.0-p576) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bcrypt (v3.1.7, RVM: ruby-2.0.0-p576) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="bootstrap-sass (v3.2.0.2, RVM: ruby-2.0.0-p576) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.2, RVM: ruby-2.0.0-p576) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bundler (v1.7.3, RVM: ruby-2.0.0-p576) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coffee-rails (v4.0.1, RVM: ruby-2.0.0-p576) [gem]" level="application" />
@@ -229,7 +227,6 @@
     <orderEntry type="library" scope="PROVIDED" name="tzinfo (v1.2.2, RVM: ruby-2.0.0-p576) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="uglifier (v2.5.3, RVM: ruby-2.0.0-p576) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="warden (v1.2.3, RVM: ruby-2.0.0-p576) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="will_paginate (v3.0.7, RVM: ruby-2.0.0-p576) [gem]" level="application" />
   </component>
   <component name="RModuleSettingsStorage">
     <LOAD_PATH number="0" />

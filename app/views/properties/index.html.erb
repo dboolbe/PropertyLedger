@@ -1,3 +1,4 @@
+<% if false %>
 <h1>Listing properties</h1>
 
 <table class="table table-condensed table-hover" border="1">
@@ -46,3 +47,87 @@
 <br>
 
 <%= link_to 'New Property', new_property_path, :class => 'btn btn-large btn-primary' %>
+
+<% else %>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Portfolio Details</h3>
+      </div>
+      <div class="panel-body">
+        <table>
+          <tbody>
+            <tr>
+              <th>Total Income:</th>
+              <td class="text-right"><%= number_to_currency @summation[:income], :precision => 2 %></td>
+            </tr>
+            <tr>
+              <th>Total Expense:</th>
+              <td class="text-right"><%= number_to_currency @summation[:expense], :precision => 2 %></td>
+            </tr>
+            <tr>
+              <th>Total Miscellaneous:</th>
+              <td class="text-right"><%= number_to_currency @summation[:miscellaneous], :precision => 2 %></td>
+            </tr>
+            <tr>
+              <th>Overall Total:</th>
+              <td class="text-right"><%= number_to_currency @summation[:overall], :precision => 2 %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="panel-footer">
+        <%= link_to 'Add Property', new_property_path, class: 'btn btn-primary btn-block' %>
+      </div>
+    </div>
+  </div>
+
+  <% @properties.each do |property| %>
+      <% income = property.transactions.sum :income %>
+      <% expense = property.transactions.sum :expense %>
+      <% miscellaneous = property.transactions.sum :miscellaneous %>
+      <% overall = (income + miscellaneous) - expense %>
+
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><%= link_to property.nickname, property %></h3>
+          </div>
+          <div class="panel-body">
+            <p>
+              <span class="descriptor">Description:</span><br>
+              <%= property.description %>
+            </p>
+            <p>
+              <span class="descriptor">Address:</span><br>
+              <%= property.address %>
+            </p>
+            <p>
+              <span class="descriptor">Income:</span><br>
+              <span class="text-right"><%= number_to_currency income, :precision => 2 %></span>
+            </p>
+            <p>
+              <span class="descriptor">Expense:</span><br>
+              <span class="text-right"><%= number_to_currency expense, :precision => 2 %></span>
+            </p>
+            <p>
+              <span class="descriptor">Miscellaneous:</span><br>
+              <span class="text-right"><%= number_to_currency miscellaneous, :precision => 2 %></span>
+            </p>
+            <p>
+              <span class="descriptor">Overall:</span><br>
+              <span class="text-right"><%= number_to_currency overall, :precision => 2 %></span>
+            </p>
+          </div>
+          <div class="panel-footer">
+            <%= link_to 'Edit', edit_property_path(property), { :class => 'btn btn-primary btn-block' } %>
+            <%= link_to 'Destroy', property, { method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-primary btn-block'} %>
+          </div>
+        </div>
+      </div>
+  <% end %>
+</div>
+
+<% end %>

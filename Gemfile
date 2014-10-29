@@ -47,3 +47,6 @@ gem 'will_paginate', '~> 3.0.7'
 # Use Bootstrap for better UI design
 gem 'bootstrap-sass', '~> 3.2.0.2'
 gem 'autoprefixer-rails'
+
+# Use Faker for creating fake data to populate the application
+gem 'faker'

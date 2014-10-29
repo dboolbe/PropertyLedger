@@ -15,10 +15,14 @@ class TransactionsController < ApplicationController
   # GET /transactions/new
   def new
     @transaction = Transaction.new
+    @transaction.property_id = params[:property_id]
+
+    set_date_time
   end
 
   # GET /transactions/1/edit
   def edit
+    set_date_time
   end
 
   # POST /transactions
@@ -28,7 +32,7 @@ class TransactionsController < ApplicationController
 
     respond_to do |format|
       if @transaction.save
-        format.html { redirect_to @transaction, notice: 'Transaction was successfully created.' }
+        format.html { redirect_to [@transaction.property], notice: 'Transaction was successfully created.' }
         format.json { render :show, status: :created, location: @transaction }
       else
         format.html { render :new }
@@ -42,7 +46,7 @@ class TransactionsController < ApplicationController
   def update
     respond_to do |format|
       if @transaction.update(transaction_params)
-        format.html { redirect_to @transaction, notice: 'Transaction was successfully updated.' }
+        format.html { redirect_to [@transaction.property], notice: 'Transaction was successfully updated.' }
         format.json { render :show, status: :ok, location: @transaction }
       else
         format.html { render :edit }
@@ -65,6 +69,21 @@ class TransactionsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_transaction
       @transaction = Transaction.find(params[:id])
+    end
+
+    def set_date_time
+      current_time = if @transaction.date
+                       @transaction.date.to_s.split("-")
+                     else
+                       Time.now.to_s.split(" ")[0].split("-")
+                     end
+
+      @current_year = current_time[0].to_i
+      @current_month = current_time[1].to_i
+      @current_day = current_time[2].to_i
+
+      @possible_years = (@current_year - 5)..(@current_year + 5)
+      @months_of_year = %w(January February March April May June July August September October November December)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

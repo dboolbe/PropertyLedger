@@ -1,0 +1,10 @@
+<tr>
+  <td><%= link_to transaction.account, [transaction.property, transaction] %></td>
+  <td><%= transaction.date %></td>
+  <td class="text-right"><%= number_to_currency transaction.income, :precision => 2 %></td>
+  <td class="text-right"><%= number_to_currency transaction.expense, :precision => 2 %></td>
+  <td class="text-right"><%= number_to_currency transaction.miscellaneous, :precision => 2 %></td>
+  <td><%= transaction.comment %></td>
+  <td><%= link_to 'Edit', edit_property_transaction_path(transaction.property, transaction) %></td>
+  <td><%= link_to 'Destroy', [transaction.property, transaction], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>

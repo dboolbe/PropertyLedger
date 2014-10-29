@@ -1,45 +1,103 @@
-<%= form_for(@transaction) do |f| %>
-  <% if @transaction.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
+<%= form_for [@transaction.property, @transaction], :html => { :class => "form-horizontal" } do |f| %>
+    <% if @transaction.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
 
-      <ul>
-      <% @transaction.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @transaction.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="panel-body">
+      <%= f.hidden_field :property_id %>
+      <div class="field form-group">
+        <%= f.label :account, :class => 'col-sm-2 control-label' %>
+        <div class="col-sm-10">
+          <%= f.text_field :account, :class => 'form-control' %>
+        </div>
+      </div>
+      <div class="field form-group row">
+        <%= f.label :date, :class => 'col-sm-2 control-label' %>
+        <div class="col-sm-2">
+          <select class="form-control" id="transaction_date_1i" name="transaction[date(1i)]">
+            <option value="">Select year</option>
+            <% @possible_years.each do |year| %>
+                <% if year == @current_year %>
+                    <option selected="selected" value="<%= year %>"><%= year %></option>
+                <% else %>
+                    <option value="<%= year %>"><%= year %></option>
+                <% end %>
+            <% end %>
+          </select>
+        </div>
+        <div class="col-sm-3">
+          <select class="form-control" id="transaction_date_2i" name="transaction[date(2i)]">
+            <option value="">Select month</option>
+            <% cnt = 1 %>
+            <% for month in @months_of_year %>
+                <% if cnt == @current_month %>
+                    <option selected="selected" value="<%= cnt %>"><%= month %></option>
+                <% else %>
+                    <option value="<%= cnt %>"><%= month %></option>
+                <% end %>
+                <% cnt += 1 %>
+            <% end %>
+          </select>
+        </div>
+        <div class="col-sm-2">
+          <select class="form-control" id="transaction_date_3i" name="transaction[date(3i)]">
+            <option value="">Select day</option>
+            <% (1..31).each do |day| %>
+                <% if day == @current_day %>
+                    <option selected="selected" value="<%= day %>"><%= day %></option>
+                <% else %>
+                    <option value="<%= day %>"><%= day %></option>
+                <% end %>
+            <% end %>
+          </select>
+        </div>
+      </div>
+      
+      <!--<div class="field form-group">-->
+        <!--<%# f.label :date, :class => 'col-sm-2 control-label' %>-->
+        <!--<div class="col-sm-10">-->
+          <!--<%# f.date_select :date, :class => 'form-control' %>-->
+        <!--</div>-->
+      <!--</div>-->
+      <div class="field form-group">
+        <%= f.label :income, :class => 'col-sm-2 control-label' %>
+        <div class="col-sm-10">
+          <%= f.text_field :income, :class => 'form-control' %>
+        </div>
+      </div>
+      <div class="field form-group">
+        <%= f.label :expense, :class => 'col-sm-2 control-label' %>
+        <div class="col-sm-10">
+          <%= f.text_field :expense, :class => 'form-control' %>
+        </div>
+      </div>
+      <div class="field form-group">
+        <%= f.label :miscellaneous, :class => 'col-sm-2 control-label' %>
+        <div class="col-sm-10">
+          <%= f.text_field :miscellaneous, :class => 'form-control' %>
+        </div>
+      </div>
+      <div class="field form-group">
+        <%= f.label :comment, :class => 'col-sm-2 control-label' %>
+        <div class="col-sm-10">
+          <%= f.text_area :comment, :class => 'form-control' %>
+        </div>
+      </div>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :property_id %><br>
-    <%= f.text_field :property_id %>
-  </div>
-  <div class="field">
-    <%= f.label :account %><br>
-    <%= f.text_field :account %>
-  </div>
-  <div class="field">
-    <%= f.label :date %><br>
-    <%= f.date_select :date %>
-  </div>
-  <div class="field">
-    <%= f.label :income %><br>
-    <%= f.text_field :income %>
-  </div>
-  <div class="field">
-    <%= f.label :expense %><br>
-    <%= f.text_field :expense %>
-  </div>
-  <div class="field">
-    <%= f.label :miscellaneous %><br>
-    <%= f.text_field :miscellaneous %>
-  </div>
-  <div class="field">
-    <%= f.label :comment %><br>
-    <%= f.text_area :comment %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="panel-footer">
+      <div class="actions form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <%= f.submit nil, { :class => 'btn btn-primary' } %>
+        </div>
+      </div>
+    </div>
 <% end %>

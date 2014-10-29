@@ -1,39 +1,66 @@
-<p id="notice"><%= notice %></p>
+<ol class="breadcrumb">
+  <li><%= link_to @transaction.property.nickname, @transaction.property %></li>
+  <li class="active"><%= @transaction.account %></li>
+</ol>
 
-<p>
-  <strong>Property:</strong>
-  <%= @transaction.property %>
-</p>
+<h3>Transaction Details <small id="notice"><%= notice %></small></h3>
+<hr style="margin: 10px 0 0 0">
 
-<p>
-  <strong>Account:</strong>
-  <%= @transaction.account %>
-</p>
+<div class="row">
+  <div class="col-md-2">
+    <strong>Account:</strong>
+  </div>
+  <div class="col-md-10">
+    <%= @transaction.account %>
+  </div>
+</div>
 
-<p>
-  <strong>Date:</strong>
-  <%= @transaction.date %>
-</p>
+<div class="row">
+  <div class="col-md-2">
+    <strong>Date:</strong>
+  </div>
+  <div class="col-md-10">
+    <%= @transaction.date %>
+  </div>
+</div>
 
-<p>
-  <strong>Income:</strong>
-  <%= @transaction.income %>
-</p>
+<div class="row">
+  <div class="col-md-2">
+    <strong>Income:</strong>
+  </div>
+  <div class="col-md-10">
+    <%= number_to_currency @transaction.income, :precision => 2 %>
+  </div>
+</div>
 
-<p>
-  <strong>Expense:</strong>
-  <%= @transaction.expense %>
-</p>
+<div class="row">
+  <div class="col-md-2">
+    <strong>Expense:</strong>
+  </div>
+  <div class="col-md-10">
+    <%= number_to_currency @transaction.expense, :precision => 2 %>
+  </div>
+</div>
 
-<p>
-  <strong>Miscellaneous:</strong>
-  <%= @transaction.miscellaneous %>
-</p>
+<div class="row">
+  <div class="col-md-2">
+    <strong>Miscellaneous:</strong>
+  </div>
+  <div class="col-md-10">
+    <%= number_to_currency @transaction.miscellaneous, :precision => 2 %>
+  </div>
+</div>
 
-<p>
-  <strong>Comment:</strong>
-  <%= @transaction.comment %>
-</p>
+<div class="row">
+  <div class="col-md-2">
+    <strong>Comment:</strong>
+  </div>
+  <div class="col-md-10">
+    <%= @transaction.comment %>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_transaction_path(@transaction) %> |
-<%= link_to 'Back', transactions_path %>
+<ul class="nav nav-pills navbar-right">
+  <li><%= link_to 'Edit', edit_property_transaction_path(@transaction.property, @transaction) %></li>
+  <li><%= link_to 'Back', :back %></li>
+</ul>

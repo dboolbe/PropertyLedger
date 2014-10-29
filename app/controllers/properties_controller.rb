@@ -8,17 +8,44 @@ class PropertiesController < ApplicationController
     puts "current_user.id = #{current_user.id}"
     puts "current_user.email = #{current_user.email}"
     puts "================================================================="
-    @properties = Property.all
+    @properties = Property.where(:user_id => current_user.id)
+    # @properties = current_user.properties
+    puts "================================================================="
+    # @transactions = current_user.transactions
+    puts "transaction = #{@transactions}"
+    puts "current_user.email = #{current_user.email}"
+    puts "================================================================="
+    @transactions = Transaction.all
+
+    income = @transactions.sum :income
+    expense = @transactions.sum :expense
+    miscellaneous = @transactions.sum :miscellaneous
+
+    @summation = Hash[
+      income: income,
+      expense: expense,
+      miscellaneous: miscellaneous,
+      overall: (income + miscellaneous) - expense
+    ]
   end
 
   # GET /properties/1
   # GET /properties/1.json
   def show
+    @summation = Hash.new
+    @summation[:income] = @property.transactions.sum :income
+    @summation[:expense] = @property.transactions.sum :expense
+    @summation[:miscellaneous] = @property.transactions.sum :miscellaneous
+    @summation[:overall] = (@summation[:income] + @summation[:miscellaneous]) - @summation[:expense]
+
+    params[:per_page] ||= 100
+    @transactions = @property.transactions.paginate(:page => params[:page], :per_page => params[:per_page]).order(:date)
   end
 
   # GET /properties/new
   def new
     @property = Property.new
+    @property.user_id = current_user.id
   end
 
   # GET /properties/1/edit

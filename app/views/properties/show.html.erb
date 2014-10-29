@@ -1,24 +1,78 @@
-<p id="notice"><%= notice %></p>
+<h3>Property Details <small id="notice"><%= notice %></small></h3>
+<hr style="margin: 10px 0 0 0">
+<div class="row">
+  <div class="col-md-2">
+    <strong>Nickname:</strong>
+  </div>
+  <div class="col-md-10">
+    <%= @property.nickname %>
+  </div>
+</div>
 
-<p>
-  <strong>User:</strong>
-  <%= @property.user %>
-</p>
+<div class="row">
+  <div class="col-md-2">
+    <strong>Description:</strong>
+  </div>
+  <div class="col-md-10">
+    <%= @property.description %>
+  </div>
+</div>
 
-<p>
-  <strong>Nickname:</strong>
-  <%= @property.nickname %>
-</p>
+<div class="row">
+  <div class="col-md-2">
+    <strong>Address:</strong>
+  </div>
+  <div class="col-md-10">
+    <%= @property.address %>
+  </div>
+</div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @property.description %>
-</p>
+<% if @property.transactions.length > 0 %>
+    <h3>List of Transactions</h3>
+    <table class="table table-condensed table-hover" border="1">
+      <thead>
+        <tr>
+          <th class="text-capitalize"><%= :account %></th>
+          <th class="text-capitalize"><%= :date %></th>
+          <th class="text-capitalize"><%= :income %></th>
+          <th class="text-capitalize"><%= :expense %></th>
+          <th class="text-capitalize"><%= :miscellaneous %></th>
+          <th class="text-capitalize"><%= :comment %></th>
+          <td colspan="1"></td>
+        </tr>
+      </thead>
 
-<p>
-  <strong>Address:</strong>
-  <%= @property.address %>
-</p>
+      <tbody>
+        <%= render @transactions %>
+      </tbody>
+
+      <tfoot>
+        <tr>
+          <th colspan="2">Total Column Sum:</th>
+          <td class="text-right"><%= number_to_currency @summation[:income], :precision => 2 %></td>
+          <td class="text-right"><%= number_to_currency @summation[:expense], :precision => 2 %></td>
+          <td class="text-right"><%= number_to_currency @summation[:miscellaneous], :precision => 2 %></td>
+          <th colspan="2">Overall Total:</th>
+          <td class="text-right"><%= number_to_currency @summation[:overall], :precision => 2 %></td>
+        </tr>
+      </tfoot>
+    </table>
+<% end %>
+
+<%= will_paginate @transactions %>
+<% if @transactions.length >= (params[:per_page] || 0) %>
+    <%= form_for("", method: "get") do |f| %>
+        <%= f.label "Per Page" %>
+        <%= f.select :per_page, options_for_select(['10','25','50','100','500'], params[:per_page]) %>
+        <%= f.submit %>
+    <% end %>
+<% end %>
+
+<hr style="margin: 10px 0 0 0">
+
+<ul class="nav nav-pills navbar-left">
+  <li><%= link_to "New Transaction", new_property_transaction_path(@property) %></li>
+</ul>
 
 <%= link_to 'Edit', edit_property_path(@property) %> |
 <%= link_to 'Back', properties_path %>

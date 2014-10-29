@@ -4,18 +4,8 @@ class PropertiesController < ApplicationController
   # GET /properties
   # GET /properties.json
   def index
-    puts "================================================================="
-    puts "current_user.id = #{current_user.id}"
-    puts "current_user.email = #{current_user.email}"
-    puts "================================================================="
     @properties = Property.where(:user_id => current_user.id)
-    # @properties = current_user.properties
-    puts "================================================================="
-    # @transactions = current_user.transactions
-    puts "transaction = #{@transactions}"
-    puts "current_user.email = #{current_user.email}"
-    puts "================================================================="
-    @transactions = Transaction.all
+    @transactions = current_user.transactions
 
     income = @transactions.sum :income
     expense = @transactions.sum :expense

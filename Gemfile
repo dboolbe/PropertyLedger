@@ -50,3 +50,5 @@ gem 'autoprefixer-rails'
 
 # Use Faker for creating fake data to populate the application
 gem 'faker'
+
+gem 'jquery-ui-rails'

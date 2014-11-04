@@ -74,5 +74,7 @@
   <li><%= link_to "New Transaction", new_property_transaction_path(@property) %></li>
 </ul>
 
-<%= link_to 'Edit', edit_property_path(@property) %> |
-<%= link_to 'Back', properties_path %>
+<ul class="nav nav-pills navbar-right">
+  <li><%= link_to 'Edit', edit_property_path(@property) %></li>
+  <li><%= link_to 'Back', properties_path %></li>
+</ul>

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get "ajax/accounts"
+
   resources :properties do
     resources :transactions
   end

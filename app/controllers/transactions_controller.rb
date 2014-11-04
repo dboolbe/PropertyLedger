@@ -35,6 +35,7 @@ class TransactionsController < ApplicationController
         format.html { redirect_to [@transaction.property], notice: 'Transaction was successfully created.' }
         format.json { render :show, status: :created, location: @transaction }
       else
+        set_date_time
         format.html { render :new }
         format.json { render json: @transaction.errors, status: :unprocessable_entity }
       end
@@ -49,6 +50,7 @@ class TransactionsController < ApplicationController
         format.html { redirect_to [@transaction.property], notice: 'Transaction was successfully updated.' }
         format.json { render :show, status: :ok, location: @transaction }
       else
+        set_date_time
         format.html { render :edit }
         format.json { render json: @transaction.errors, status: :unprocessable_entity }
       end

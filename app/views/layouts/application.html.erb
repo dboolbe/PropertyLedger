@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= @title || "Property Ledger" %></title>
+  <title><%= @title || 'Property Ledger' %></title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -16,10 +16,10 @@
         <nav>
           <ul class="nav nav-pills pull-right">
             <% if user_signed_in? %>
-                <li><%= link_to "List Properties", properties_path %></li>
-                <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
+                <li><%= link_to 'List Properties', properties_path %></li>
+                <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></li>
             <% else %>
-                <li><%= link_to "Log In", new_user_session_path %></li>
+                <li><%= link_to 'Log In', new_user_session_path %></li>
             <% end %>
             <%# FIXME: This is commented out because I don't know it I will eventually. %>
             <!--<li><%# link_to "List Transactions", { controller: 'transactions', action: 'index' } %></li>-->

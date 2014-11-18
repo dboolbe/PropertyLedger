@@ -29,6 +29,13 @@
     </div>
   </header>
   <div class="container">
+    <% flash.each do |name, msg| %>
+        <div class="<%= flash_class name %>">
+          <a class="close" data-dismiss="alert" href="#">&times;</a>
+          <%= msg %>
+        </div>
+    <% end %>
+
     <%= yield %>
   </div>
 </body>

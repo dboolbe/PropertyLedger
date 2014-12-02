@@ -12,7 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.autocomplete
+//= require dataTables/jquery.dataTables
+//= require jquery.ui.all
 //= require bootstrap-sprockets
 //= require_tree .
 
@@ -62,6 +63,11 @@ $(document).ready(function() {
         // Set up and make the request.
         request.open('GET', '/ajax/accounts?term=' + input.val(), true);
         request.send();
+    });
+
+    $(function() {
+        var $j = jQuery.noConflict();
+        $j("#transaction_date").datepicker();
     });
 });
 

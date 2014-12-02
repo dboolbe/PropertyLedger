@@ -1,46 +1,23 @@
 <% unless params[:experimental] %>
 <h1>Listing properties</h1>
 
-<table class="table table-condensed table-hover" border="1">
+<table id="all_regs" class="table datatable table-striped table-hover table-responsive" data-source="<%= properties_url(format: "json") %>">
   <thead>
     <tr>
-      <th>Nickname</th>
-      <th>Description</th>
-      <th>Address</th>
-      <th>Total Income</th>
-      <th>Total Expenses</th>
-      <th>Total Miscellaneous</th>
-      <th>Overall Total</th>
-      <th colspan="2"></th>
+      <th id="all_reg_nickname">Nickname</th>
+      <th id="all_reg_description">Description</th>
+      <th id="all_reg_address">Address</th>
+      <th id="all_reg_income">Total Income</th>
+      <th id="all_reg_expenses">Total Expenses</th>
+      <th id="all_reg_miscellaneous">Total Miscellaneous</th>
+      <th id="all_reg_total">Overall Total</th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @properties.each do |property| %>
-        <% income = property.transactions.sum :income %>
-        <% expense = property.transactions.sum :expense %>
-        <% miscellaneous = property.transactions.sum :miscellaneous %>
-        <% overall = (income + miscellaneous) - expense %>
-        <tr>
-          <td><%= link_to property.nickname, property %></td>
-          <td><%= property.description %></td>
-          <td><%= property.address %></td>
-          <td class="text-right"><%= number_to_currency income, :precision => 2 %></td>
-          <td class="text-right"><%= number_to_currency expense, :precision => 2 %></td>
-          <td class="text-right"><%= number_to_currency miscellaneous, :precision => 2 %></td>
-          <td class="text-right"><%= number_to_currency overall, :precision => 2 %></td>
-          <td><%= link_to 'Edit', edit_property_path(property) %></td>
-          <td><%= link_to 'Destroy', property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-    <% end %>
-    <tr>
-      <th colspan="3">Totals:</th>
-      <td class="text-right"><%= number_to_currency @summation[:income], :precision => 2 %></td>
-      <td class="text-right"><%= number_to_currency @summation[:expense], :precision => 2 %></td>
-      <td class="text-right"><%= number_to_currency @summation[:miscellaneous], :precision => 2 %></td>
-      <th colspan="2">Overall:</th>
-      <td class="text-right"><%= number_to_currency @summation[:overall], :precision => 2 %></td>
-    </tr>
+    <!-- Look into /app/datatables/properties_datatable.rb if you need to modify the data within the table. -->
   </tbody>
 </table>
 

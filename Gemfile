@@ -41,6 +41,8 @@ gem 'spring',        group: :development
 # Use Devise for user authenication
 gem 'devise', '~> 3.2.4'
 
+gem 'jquery-datatables-rails', :git => 'https://github.com/rweng/jquery-datatables-rails.git'
+
 # Use WillPaginate for simple table pagination
 gem 'will_paginate', '~> 3.0.7'
 

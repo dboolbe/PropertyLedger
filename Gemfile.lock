@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/rweng/jquery-datatables-rails.git
+  revision: dbff2bfa3b5c027b71c3337faf322abe5861fdd7
+  specs:
+    jquery-datatables-rails (3.1.1)
+      actionpack (>= 3.1)
+      jquery-rails
+      railties (>= 3.1)
+      sass-rails
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -138,6 +148,7 @@ DEPENDENCIES
   devise (~> 3.2.4)
   faker
   jbuilder (~> 2.0)
+  jquery-datatables-rails!
   jquery-rails
   jquery-ui-rails
   rails (= 4.1.6)

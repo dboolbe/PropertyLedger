@@ -17,6 +17,10 @@ class PropertiesController < ApplicationController
       miscellaneous: miscellaneous,
       overall: (income + miscellaneous) - expense
     ]
+    respond_to do |format|
+      format.html { render action: 'index' }
+      format.json { render json: PropertiesDatatable.new(view_context) }
+    end
   end
 
   # GET /properties/1

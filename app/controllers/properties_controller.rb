@@ -34,6 +34,9 @@ class PropertiesController < ApplicationController
 
     params[:per_page] ||= 100
     @transactions = @property.transactions.paginate(:page => params[:page], :per_page => params[:per_page]).order(:date)
+    respond_to do |format|
+      format.html { render action: 'show'}
+    end
   end
 
   # GET /properties/new

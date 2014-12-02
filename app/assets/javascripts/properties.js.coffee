@@ -22,9 +22,9 @@ function researchEffortsInitPagse() {
     };
 
     var specific_dataTable_params = {
-        "all_regs": {
+        "all_properties": {
             "aaSorting": [
-                [1, 'desc']
+                [0, 'asc']
             ],
             "aoColumns": [
                 { "bSortable": true },

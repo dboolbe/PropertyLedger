@@ -1,16 +1,16 @@
 <% unless params[:experimental] %>
 <h1>Listing properties</h1>
 
-<table id="all_regs" class="table datatable table-striped table-hover table-responsive" data-source="<%= properties_url(format: "json") %>">
+<table id="all_properties" class="table datatable table-striped table-hover table-responsive" data-source="<%= properties_url(format: "json") %>">
   <thead>
     <tr>
-      <th id="all_reg_nickname">Nickname</th>
-      <th id="all_reg_description">Description</th>
-      <th id="all_reg_address">Address</th>
-      <th id="all_reg_income">Total Income</th>
-      <th id="all_reg_expenses">Total Expenses</th>
-      <th id="all_reg_miscellaneous">Total Miscellaneous</th>
-      <th id="all_reg_total">Overall Total</th>
+      <th id="all_property_nickname">Nickname</th>
+      <th id="all_property_description">Description</th>
+      <th id="all_property_address">Address</th>
+      <th id="all_property_income">Total Income</th>
+      <th id="all_property_expenses">Total Expenses</th>
+      <th id="all_property_miscellaneous">Total Miscellaneous</th>
+      <th id="all_property_total">Overall Total</th>
       <th></th>
       <th></th>
     </tr>

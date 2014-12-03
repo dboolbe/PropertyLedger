@@ -37,6 +37,12 @@ function researchEffortsInitPagse() {
                 { "bSortable": false },
                 { "bSortable": false }
             ],
+            "aoColumnDefs": [
+                {
+                  "sClass": "text-right",
+                  "aTargets": [ 3,4,5,6 ]
+                }
+            ],
             "bPaginate": true,
             "bLengthChange": true,
             "bFilter": true,

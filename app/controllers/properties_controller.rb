@@ -32,10 +32,17 @@ class PropertiesController < ApplicationController
     @summation[:miscellaneous] = @property.transactions.sum :miscellaneous
     @summation[:overall] = (@summation[:income] + @summation[:miscellaneous]) - @summation[:expense]
 
-    params[:per_page] ||= 100
-    @transactions = @property.transactions.paginate(:page => params[:page], :per_page => params[:per_page]).order(:date)
+    puts "=============================================================================================="
+    puts "=============================================================================================="
+    puts "property_url = #{property_url}"
+    puts "=============================================================================================="
+    puts "=============================================================================================="
+
+    # params[:per_page] ||= 100
+    # @transactions = @property.transactions.paginate(:page => params[:page], :per_page => params[:per_page]).order(:date)
     respond_to do |format|
       format.html { render action: 'show'}
+      format.json { render json: TransactionsDatatable.new(view_context, @property) }
     end
   end
 

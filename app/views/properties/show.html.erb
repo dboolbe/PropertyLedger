@@ -29,21 +29,22 @@
 
 <% if @property.transactions.length > 0 %>
     <h3>List of Transactions</h3>
-    <table class="table table-condensed table-hover" border="1">
+    <table id="all_property_transactions" class="table datatable table-striped table-hover table-responsive" data-source="<%= property_url(format: "json") %>">
       <thead>
         <tr>
-          <th class="text-capitalize"><%= :account %></th>
-          <th class="text-capitalize"><%= :date %></th>
-          <th class="text-capitalize"><%= :income %></th>
-          <th class="text-capitalize"><%= :expense %></th>
-          <th class="text-capitalize"><%= :miscellaneous %></th>
-          <th class="text-capitalize"><%= :comment %></th>
-          <td colspan="1"></td>
+          <th id="all_property_transaction_account" class="text-capitalize"><%= :account %></th>
+          <th id="all_property_transaction_date" class="text-capitalize"><%= :date %></th>
+          <th id="all_property_transaction_income" class="text-capitalize"><%= :income %></th>
+          <th id="all_property_transaction_expense" class="text-capitalize"><%= :expense %></th>
+          <th id="all_property_transaction_miscellaneous" class="text-capitalize"><%= :miscellaneous %></th>
+          <th id="all_property_transaction_comment" class="text-capitalize"><%= :comment %></th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
 
       <tbody>
-        <%= render @transactions %>
+        <%# render @transactions %>
       </tbody>
 
       <tfoot>
@@ -57,15 +58,6 @@
         </tr>
       </tfoot>
     </table>
-<% end %>
-
-<%= will_paginate @transactions %>
-<% if @transactions.length >= (params[:per_page] || 0) %>
-    <%= form_for("", method: "get") do |f| %>
-        <%= f.label "Per Page" %>
-        <%= f.select :per_page, options_for_select(['10','25','50','100','500'], params[:per_page]) %>
-        <%= f.submit %>
-    <% end %>
 <% end %>
 
 <hr style="margin: 10px 0 0 0">

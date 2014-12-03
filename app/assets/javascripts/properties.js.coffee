@@ -37,10 +37,34 @@ function researchEffortsInitPagse() {
                 { "bSortable": false },
                 { "bSortable": false }
             ],
-//            "aoColumnDefs": [
-//                { "iDataSort": 8, "aTargets": [ 7 ] },
-//                { "bVisible": false, "aTargets": [ 8 ] }
-//            ],
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bInfo": true,
+            "bProcessing": true,
+            "bServerSide": true,
+            "sAjaxSource": $(this).data('source')
+        },
+        "all_property_transactions": {
+            "aaSorting": [
+                [0, 'asc']
+            ],
+            "aoColumns": [
+                { "bSortable": true },
+                { "bSortable": true },
+                { "bSortable": true },
+                { "bSortable": true },
+                { "bSortable": true },
+                { "bSortable": false },
+                { "bSortable": false },
+                { "bSortable": false }
+            ],
+            "aoColumnDefs": [
+                {
+                  "sClass": "text-right",
+                  "aTargets": [ 2,3,4 ]
+                }
+            ],
             "bPaginate": true,
             "bLengthChange": true,
             "bFilter": true,

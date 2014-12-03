@@ -38,14 +38,8 @@ class TransactionsDatatable
     def fetch_transactions
       transactions = @property.transactions
       case "#{sort_column}"
-        when 'total_income'
-          # properties = properties.order("concat_org #{sort_direction}")
-        when 'total_expenses'
-          # properties = properties.order("fname #{sort_direction}").order("lname #{sort_direction}")
-        when 'total_miscellaneous'
-          # properties = properties.order("fname #{sort_direction}").order("lname #{sort_direction}")
-        when 'overall_total'
-          # properties = properties.order("fname #{sort_direction}").order("lname #{sort_direction}")
+        when 'comment'
+          # currently not sorting on comment column
         else
           transactions = transactions.order "#{sort_column} #{sort_direction}"
       end

@@ -47,13 +47,13 @@ class PropertiesDatatable
       properties = Property.where(:user_id => current_user.id)
       case "#{sort_column}"
         when 'total_income'
-          # properties = properties.order("concat_org #{sort_direction}")
+          # currently not sorting on total_income column since it does not exists
         when 'total_expenses'
-          # properties = properties.order("fname #{sort_direction}").order("lname #{sort_direction}")
+          # currently not sorting on total_expenses column since it does not exists
         when 'total_miscellaneous'
-          # properties = properties.order("fname #{sort_direction}").order("lname #{sort_direction}")
+          # currently not sorting on total_miscellaneous column since it does not exists
         when 'overall_total'
-          # properties = properties.order("fname #{sort_direction}").order("lname #{sort_direction}")
+          # currently not sorting on overall_total column since it does not exists
         else
           properties = properties.order "#{sort_column} #{sort_direction}"
       end
